@@ -1,0 +1,33 @@
+{
+  "default_branch": "main",
+  "branches": [
+    "MergeReady",
+    "account",
+    "admin",
+    "asad",
+    "main",
+    "plan",
+    "utility",
+    "vercel/react-server-components-cve-vu-pw6etv"
+  ],
+  "parent": {
+    "MergeReady": "main",
+    "account": "main",
+    "admin": "main",
+    "asad": "main",
+    "main": null,
+    "plan": "main",
+    "utility": "main",
+    "vercel/react-server-components-cve-vu-pw6etv": "main"
+  },
+  "order": [
+    "main",
+    "MergeReady",
+    "account",
+    "admin",
+    "asad",
+    "plan",
+    "utility",
+    "vercel/react-server-components-cve-vu-pw6etv"
+  ]
+}
