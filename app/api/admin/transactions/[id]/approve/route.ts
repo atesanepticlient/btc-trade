@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/src/lib/auth";
 import { prisma } from "@/src/lib/prisma";
+import { getCurrentPrice } from "@/src/lib/utili";
 
 export async function POST(
   request: NextRequest,
@@ -28,12 +29,9 @@ export async function POST(
       `${process.env.NEXT_PUBLIC_SERVER_URL}/api/btc-modify`
     );
     const { modifyData } = await res.json();
-    const btcResponse = await fetch(
-      "https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT"
-    );
-    const btcData = await btcResponse.json();
 
-    const price = parseFloat(btcData.price);
+    const price = await getCurrentPrice();
+
     const btcModifyFloat = parseFloat(modifyData.adjustment);
     let currentBtcPrice: number;
     if (btcModifyFloat < 0) {
@@ -105,11 +103,6 @@ export async function POST(
           },
         }),
       ]);
-      console.log({
-        btcAmount: transaction.amount,
-        usdtAmount,
-        btcPrice: currentBtcPrice,
-      });
 
       return NextResponse.json({
         message: "Deposit approved successfully",
@@ -128,7 +121,7 @@ export async function POST(
       const usdtAsset = transaction.user.assets.find(
         (asset) => asset.assetName === "USDT"
       );
-      console.log(btcAsset, usdtAsset);
+
 
       if (!btcAsset || !usdtAsset) {
         return NextResponse.json(

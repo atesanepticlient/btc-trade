@@ -19,6 +19,7 @@ const Spot = () => {
 
   const user = useCurrentUser();
   const router = useRouter();
+  const btcPrice = usePrice((s) => s.price);
 
   const { enqueueSnackbar } = useSnackbar();
 
@@ -56,9 +57,8 @@ const Spot = () => {
           type="number"
           value={quantity}
           onChange={(e) => setQuantity(e.target.value)}
-          className="w-full bg-transparent border focus:ring-[rgb(108,244,239)] focus:ring border-[rgb(69,76,89)] text-white placeholder:text-[rgb(87,94,108)] outline-none rounded-lg px-3 py-2  text-sm"
+          className="w-full bg-transparent border focus:ring-main focus:ring border-[rgb(69,76,89)] text-white placeholder:text-[rgb(87,94,108)] outline-none rounded-lg px-3 py-2  text-sm"
           step="0.001"
-          min="0.001"
         />
       </div>
       {user && data && (
@@ -77,7 +77,7 @@ const Spot = () => {
         </button>
         <button
           onClick={() => trade("SELL")}
-          className="bg-[#f6465d] cursor-pointer hover:bg-[#f64646] rounded py-2 font-semibold transition-colors text-sm"
+          className="bg-red cursor-pointer hover:bg-[#f64646] rounded py-2 font-semibold transition-colors text-sm"
         >
           SELL
         </button>

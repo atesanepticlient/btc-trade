@@ -2,48 +2,13 @@
 
 import { Check, TrendingUp, ArrowRight } from "lucide-react";
 import Link from "next/link";
-
+import { IoArrowBack } from "react-icons/io5";
 export default function FundedAccountsPage() {
   const packs = [
-    // Original Plans
-    {
-      name: "Starter Account",
-      price: "$49",
-      color: "from-blue-500 to-blue-700",
-      profitShare: "70/30",
-      scaling: true,
-      rules: ["Max daily loss 5%", "Max overall loss 10%", "No weekend hold"],
-    },
-    {
-      name: "Pro Account",
-      price: "$99",
-      color: "from-purple-500 to-purple-700",
-      profitShare: "80/20",
-      scaling: true,
-      rules: [
-        "Max daily loss 7%",
-        "Max overall loss 12%",
-        "News trading allowed",
-      ],
-    },
-    {
-      name: "Elite Account",
-      price: "$199",
-      color: "from-amber-500 to-amber-700",
-      profitShare: "90/10",
-      scaling: true,
-      rules: [
-        "Max daily loss 10%",
-        "Max overall loss 15%",
-        "Hold over weekend allowed",
-      ],
-    },
-
-    // New Instant Funded Account Plans
     {
       name: "Basic",
-      price: "$99",
-      color: "from-indigo-500 to-indigo-700",
+      price: "99",
+      color: "from-blue-500 to-blue-700",
       profitShare: "95%",
       scaling: false,
       rules: [
@@ -56,8 +21,8 @@ export default function FundedAccountsPage() {
     },
     {
       name: "Standard",
-      price: "$199",
-      color: "from-teal-500 to-teal-700",
+      price: "199",
+      color: "from-purple-500 to-purple-700",
       profitShare: "95%",
       scaling: false,
       rules: [
@@ -70,8 +35,8 @@ export default function FundedAccountsPage() {
     },
     {
       name: "Advanced",
-      price: "$499",
-      color: "from-yellow-500 to-yellow-700",
+      price: "499",
+      color: "from-amber-500 to-amber-700",
       profitShare: "95%",
       scaling: false,
       rules: [
@@ -84,7 +49,7 @@ export default function FundedAccountsPage() {
     },
     {
       name: "Pro",
-      price: "$1000",
+      price: "1000",
       color: "from-red-500 to-red-700",
       profitShare: "95%",
       scaling: false,
@@ -98,7 +63,7 @@ export default function FundedAccountsPage() {
     },
     {
       name: "Elite",
-      price: "$1350",
+      price: "1350",
       color: "from-pink-500 to-pink-700",
       profitShare: "95%",
       scaling: false,
@@ -121,8 +86,9 @@ export default function FundedAccountsPage() {
           <div className="flex gap-4 text-sm">
             <Link
               href="/"
-              className="text-gray-300 hover:text-main transition-all"
+              className="text-gray-300 hover:text-main transition-all flex items-center gap-0.5"
             >
+              <IoArrowBack />
               Go Home
             </Link>
           </div>
@@ -195,7 +161,7 @@ export default function FundedAccountsPage() {
               {/* CONTENT */}
               <div className="p-6 space-y-4">
                 <div className="text-3xl font-bold text-white">
-                  {pack.price}
+                  ${pack.price}
                 </div>
 
                 <div className="flex items-center gap-2 text-sm text-gray-400">
@@ -218,9 +184,11 @@ export default function FundedAccountsPage() {
                 </ul>
 
                 {/* BUTTON */}
-                <button className="w-full mt-3 flex items-center justify-center gap-2 py-3 rounded-xl bg-main text-black font-semibold hover:bg-[#58c0bc] transition-all">
-                  Get Started <ArrowRight className="w-4 h-4" />
-                </button>
+                <Link href={`/deposit?usdt=${pack.price}`}>
+                  <button className="w-full mt-3 flex items-center justify-center gap-2 py-3 rounded-xl bg-main text-black font-semibold hover:bg-[#58c0bc] transition-all">
+                    Get Started <ArrowRight className="w-4 h-4" />
+                  </button>
+                </Link>
               </div>
             </div>
           ))}
